@@ -12,6 +12,8 @@ const getName = async (req, res) => {
           .status(404)
           .json({ message: "No se encontro ningun pokemon con ese nombre" })
       : res.status(200).json(poke);
-  } catch (error) {}
+  } catch (error) {
+    return "ERROR: " + error;
+  }
 };
 module.exports = getName;

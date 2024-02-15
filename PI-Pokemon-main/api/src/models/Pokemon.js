@@ -18,6 +18,10 @@ module.exports = (sequelize) => {
       defaultValue:
         "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png",
     },
+    type: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue: ["normal"],
+    },
     hp: { type: DataTypes.INTEGER },
     attack: {
       type: DataTypes.INTEGER,
