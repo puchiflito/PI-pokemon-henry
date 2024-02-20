@@ -4,11 +4,6 @@ import { getPokemon } from "../../Redux/Actions/actions";
 
 const Pages = () => {
   const pokemons = useSelector((state) => state.pokemon);
-  const dispatch = useDispatch();
-  console.log(pokemons);
-  useEffect(() => {
-    console.log(dispatch(getPokemon()));
-  }, []);
 
   return (
     <div>
