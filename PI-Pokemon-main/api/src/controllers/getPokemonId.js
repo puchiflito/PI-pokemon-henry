@@ -8,9 +8,20 @@ const getId = async (req, res) => {
     });
     if (!pokedb) {
       const idApi = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
-      console.log(idApi);
       const data = await idApi.json();
-      return res.status(200).json(data);
+      const pokemonId = {
+        id: data.id,
+        name: data.name,
+        img: data.sprites.other.dream_world.front_default,
+        type: data.types.map((types) => types.type.name),
+        health: data.stats[0].base_stat,
+        attack: data.stats[1].base_stat,
+        defense: data.stats[2].base_stat,
+        speed: data.stats[5].base_stat,
+        height: data.height,
+        weight: data.weight,
+      };
+      return res.status(200).json(pokemonId);
     }
     res.json(pokedb);
     // !poke
