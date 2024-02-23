@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getPokemon } from "../../Redux/Actions/actions";
+import { getPokemon, getType } from "../../Redux/Actions/actions";
 import Pagination from "./Pagination";
 import Cards from "../Cards/Cards";
 
 const Pages = () => {
   const dispacth = useDispatch();
   const pokemons = useSelector((state) => state.pokemon);
+  const types = useSelector((state) => state.type);
+  console.log(types);
   console.log(pokemons);
 
   useEffect(() => {
     dispacth(getPokemon());
+    dispacth(getType());
   }, []);
   const [limiteDeDatos, setLimiteDeDatos] = useState(12);
   const [paginaActual, setPaginaActual] = useState(1);
