@@ -2,21 +2,34 @@ const { Pokemon, Type } = require("../db");
 
 const postPokemon = async (req, res) => {
   try {
-    const { name, img, type, hp, attack, defense, speed, height, weight } =
+    const { name, img, hp, attack, defense, speed, height, weight, type } =
       req.body;
-
+    if (
+      !name ||
+      !img ||
+      !hp ||
+      !attack ||
+      !defense ||
+      !speed ||
+      !height ||
+      !weight
+    ) {
+      return res
+        .status(415)
+        .send("Debe ingresar todos los datos. Type esta exento de esto");
+    }
     const pokemon = await Pokemon.create({
       name,
       img: img
         ? img
         : "https://assets.pokemon.com/assets/cms2/img/pokedex/full/132.png",
-      type: type.length ? type : ["normal"],
       hp,
       attack,
       defense,
       speed,
       height,
       weight,
+      type: type.length ? type : ["normal"],
     });
     if (type && type.length > 0) {
       const types = await Type.findAll({
@@ -26,9 +39,9 @@ const postPokemon = async (req, res) => {
       });
 
       // Asociar cada tipo encontrado al Pokemon
-      await pokemon.addTypes(types);
+      const relationTable = await pokemon.addTypes(types);
+      return res.send(relationTable);
     }
-    res.send("Pokemon creado");
   } catch (error) {
     res.send("ERROR: " + error);
   }

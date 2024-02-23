@@ -1,10 +1,11 @@
-const { Pokemon } = require("../db");
+const { Pokemon, Type } = require("../db");
 
 const getId = async (req, res) => {
   try {
     const { id } = req.params;
     const pokedb = await Pokemon.findOne({
       where: { id },
+      include: Type,
     });
     if (!pokedb) {
       const idApi = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
