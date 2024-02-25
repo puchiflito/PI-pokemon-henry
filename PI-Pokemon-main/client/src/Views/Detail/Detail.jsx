@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { getPokemonID, getType } from "../Redux/Actions/actions";
+import { getPokemonID, getType } from "../../Redux/Actions/actions";
 
 const Detail = () => {
   const { id } = useParams();
