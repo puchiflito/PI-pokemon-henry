@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getType } from "../../Redux/Actions/actions";
 const Form = () => {
+  const urlPokemon = "http://localhost:3001/pokemon";
   //Trago datos de redus para los type
   const dispacth = useDispatch();
   const types = useSelector((state) => state.type);
@@ -33,24 +34,51 @@ const Form = () => {
   //CHANGE DE TYPES
   const changeTypes = ({ target }) => {
     setType([...type, target.value]);
-    setPokemon({
-      ...pokemon,
-      type: [...setPokemon.type, target.value],
-    });
+    setPokemon((prevPokemon) => ({
+      ...prevPokemon,
+      type: [...prevPokemon.type, target.value],
+    }));
     setError({ ...error, type: "" });
   };
   // REMOVER TYPES
-  const removeTypes = (type) => {
-    setType(type.filter((t) => t !== type));
+  const removeTypes = (types) => {
+    setType(type.filter((t) => t !== types));
     setPokemon({
       ...pokemon,
-      type: pokemon.type.filter((t) => t !== type),
+      type: pokemon.type.filter((t) => t !== types),
     });
   };
+  // ordenar
+  const compareTypes = (a, b) => {
+    if (a.name < b.name) return -1;
+    if (a.name > b.name) return 1;
+    return 0;
+  };
   //ENVIAR DATOS
-  const submit = async (pokemon) => {
-    error.preventDefault();
+  const submit = async (e) => {
+    e.preventDefault();
     try {
+      const response = await fetch(urlPokemon, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(pokemon),
+      });
+      if (response.ok) {
+        alert("Se creo el pokemon");
+        setPokemon({
+          name: "",
+          img: "",
+          hp: "",
+          attack: "",
+          defense: "",
+          speed: "",
+          height: "",
+          weight: "",
+          type: [],
+        });
+      } else {
+        throw new Error("Error al cargar el pokemon");
+      }
     } catch (error) {
       alert("ERROR: ", error);
     }
@@ -76,7 +104,38 @@ const Form = () => {
         <label htmlFor="weight">Weight</label>
         <input type="number" name="weight" onChange={changeInput} />
         <label htmlFor="type">Type</label>
-        <input type="text" name="type" />
+        <select
+          name="type"
+          value={pokemon.type}
+          onChange={changeTypes}
+          multiple
+        >
+          <option disabled>Select Types</option>
+          {types.sort(compareTypes).map((type, index) => (
+            <option key={index} value={type.name}>
+              {type.name}
+            </option>
+          ))}
+        </select>
+
+        <div>
+          {type.map((typeId) => {
+            const ty = types.find((t) => t.id === typeId);
+            return (
+              <div key={typeId}>
+                <div>
+                  <button onClick={() => removeTypes(typeId)}>Delete</button>
+                </div>
+                <img
+                  src={types?.image || "foto del pokemon"}
+                  alt="imagen del pokemon"
+                />
+                <h3>{types?.name || "nombre del pokemon"}</h3>
+              </div>
+            );
+          })}
+        </div>
+
         <button>Save</button>
       </form>
     </div>

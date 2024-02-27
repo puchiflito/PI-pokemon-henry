@@ -1,6 +1,7 @@
 import { GET_POKEMON, GET_POKEMON_ID, GET_TYPE } from "../Actions/actions";
 const initiaState = {
   pokemon: [],
+  pokemonDetail: [],
   type: [],
   filters: [],
   order: [],
@@ -19,7 +20,13 @@ const reducer = (state = initiaState, action) => {
       };
     case GET_POKEMON_ID:
       return {
-        pokemon: action.payload,
+        ...state,
+        pokemonDetail: action.payload,
+      };
+
+      return {
+        ...state,
+        pokemon: [...state.pokemon, action.payload],
       };
     case GET_TYPE:
       return {
@@ -30,5 +37,6 @@ const reducer = (state = initiaState, action) => {
       return state;
   }
 };
+console.log("pokemon Detalle reducer: ", initiaState.pokemonDetail);
 
 export default reducer;

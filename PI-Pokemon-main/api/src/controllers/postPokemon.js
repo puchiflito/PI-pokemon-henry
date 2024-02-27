@@ -4,16 +4,7 @@ const postPokemon = async (req, res) => {
   try {
     const { name, img, hp, attack, defense, speed, height, weight, type } =
       req.body;
-    if (
-      !name ||
-      !img ||
-      !hp ||
-      !attack ||
-      !defense ||
-      !speed ||
-      !height ||
-      !weight
-    ) {
+    if (!name || !hp || !attack || !defense || !speed || !height || !weight) {
       return res
         .status(415)
         .send("Debe ingresar todos los datos. Type esta exento de esto");

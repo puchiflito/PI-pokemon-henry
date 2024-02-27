@@ -6,9 +6,9 @@ const Card = (props) => {
         <img src={props.img} alt="imagen del pokemon" />
         <h3>{props.name}</h3>
         <ul>
-          {props.type.map((types, index) => (
-            <ul key={index}>{types}</ul>
-          ))}
+          {!props.type
+            ? "Tiene type, pero en el detalle se ve"
+            : props.type.map((types, index) => <ul key={index}>{types}</ul>)}
         </ul>
       </Link>
     </div>

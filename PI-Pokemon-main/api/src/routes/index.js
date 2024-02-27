@@ -1,6 +1,6 @@
 const { Router } = require("express");
 const {
-  getDB,
+  getPokemon,
   getId,
   getName,
   getTypes,
@@ -13,7 +13,7 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.get("/pokemon", getDB);
+router.get("/pokemon", getPokemon);
 router.get("/pokemon/", getName);
 router.get("/pokemon/:id", getId);
 router.get("/type", getTypes);

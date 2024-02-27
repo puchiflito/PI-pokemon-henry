@@ -14,7 +14,7 @@ const Pages = () => {
   useEffect(() => {
     dispacth(getPokemon());
     dispacth(getType());
-  }, []);
+  }, [dispacth]);
   const [limiteDeDatos, setLimiteDeDatos] = useState(12);
   const [paginaActual, setPaginaActual] = useState(1);
   const indiceFinal = paginaActual * limiteDeDatos;
