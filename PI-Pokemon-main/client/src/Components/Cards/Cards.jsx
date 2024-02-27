@@ -15,6 +15,7 @@ const Cards = ({ nPokemons }) => {
           height={pokemon.height}
           weight={pokemon.weight}
           type={pokemon.type}
+          source={pokemon.source}
         />
       ))}
     </div>

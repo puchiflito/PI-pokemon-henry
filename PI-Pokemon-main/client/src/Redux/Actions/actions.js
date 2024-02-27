@@ -15,7 +15,7 @@ const getPokemon = () => {
         payload: data,
       });
     } catch (error) {
-      console.log("ERROR: ", error);
+      console.log("ERROR: " + error);
     }
   };
 };

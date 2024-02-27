@@ -23,11 +23,13 @@ const getPokemonApi = async () => {
         speed: p.stats[5].base_stat,
         height: p.height,
         weight: p.weight,
+        source: "api",
       };
     })
   );
   return results;
 };
+console.log("pokemon api: ", getPokemonApi());
 
 const getDB = async () => {
   try {

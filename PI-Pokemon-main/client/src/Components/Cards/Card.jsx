@@ -10,6 +10,7 @@ const Card = (props) => {
             ? "Tiene type, pero en el detalle se ve"
             : props.type.map((types, index) => <ul key={index}>{types}</ul>)}
         </ul>
+        <h3>{props.source}</h3>
       </Link>
     </div>
   );
