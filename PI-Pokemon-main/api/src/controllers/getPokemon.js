@@ -29,7 +29,6 @@ const getPokemonApi = async () => {
   );
   return results;
 };
-console.log("pokemon api: ", getPokemonApi());
 
 const getDB = async () => {
   try {
@@ -39,7 +38,7 @@ const getDB = async () => {
         attributes: ["name"],
       },
     });
-    console.log("pokemon db: ", pokedb);
+
     return pokedb;
   } catch (error) {
     throw new Error("ERROR: " + error);

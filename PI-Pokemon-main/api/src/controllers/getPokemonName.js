@@ -1,11 +1,16 @@
 const { Pokemon } = require("../db");
+const { Op } = require("sequelize");
 
 const getName = async (req, res) => {
   try {
     const { name } = req.query;
-    const lowerCase = name.toLowerCase();
+
     const pokedb = await Pokemon.findOne({
-      where: { name: lowerCase },
+      where: {
+        name: {
+          [Op.iLike]: `%${name}%`,
+        },
+      },
     });
     if (!pokedb) {
       const nameApi = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
@@ -22,10 +27,13 @@ const getName = async (req, res) => {
         height: data.height,
         weight: data.weight,
       };
-      return res.status(200).json(pokemonName);
+      return pokemonName.length === 0
+        ? res.status(400).json({ message: "no se encontro nada" })
+        : res.status(200).json(pokemonName);
     }
-
-    res.status(200).json(pokedb);
+    pokedb.length === 0
+      ? res.status(400).json({ message: "no se encontro nada" })
+      : res.status(200).json(pokedb);
   } catch (error) {
     return "ERROR: " + error;
   }
