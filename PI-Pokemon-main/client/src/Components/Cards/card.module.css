@@ -1,119 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+
+:root {
+  --clr-black: #1c1c1c;
+  --clr-gray: #ececec;
+  --clr-white: #f7f7f7;
+
+  --type-normal: #a8a878;
+  --type-fire: #f08030;
+  --type-water: #6890f0;
+  --type-grass: #78c850;
+  --type-electric: #f8d030;
+  --type-ice: #98d8d8;
+  --type-fighting: #c03028;
+  --type-poison: #a040a0;
+  --type-ground: #e0c068;
+  --type-flying: #a890f0;
+  --type-psychic: #f85888;
+  --type-bug: #a8b820;
+  --type-rock: #b8a038;
+  --type-ghost: #705898;
+  --type-dark: #705848;
+  --type-dragon: #7038f8;
+  --type-steel: #b8b8d0;
+  --type-fairy: #f0b6bc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--clr-black);
+  font-family: "Rubik", sans-serif;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/* Aquí todo el CSS extra */
 .pokemon {
+  border-radius: 1rem;
+  background-color: var(--type-steel);
+  padding-block: 1rem;
+  text-transform: uppercase;
+}
+
+.image img {
+  width: 100%;
+  max-width: 6rem;
+}
+
+.pokemonInfo {
   display: flex;
   flex-direction: column;
-  margin: 0.5rem;
-  padding: 1rem;
-  border-radius: 1rem;
-}
-
-.pokemon .number {
-  color: #000;
-  opacity: 0.3;
-  text-align: right;
-  font-size: 0.625rem;
-}
-
-.pokemon .name {
-  text-transform: capitalize;
-  color: #fff;
-  margin-bottom: 0.25rem;
-}
-
-.pokemon .detail {
-  display: flex;
-  flex-direction: row;
+  gap: 0.5rem;
+  padding-inline: 1rem;
   align-items: center;
-  justify-content: space-between;
-}
-
-.pokemon .detail .types {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.pokemon .detail .types .type {
-  color: #fff;
-  padding: 0.25rem 0.5rem;
-  margin: 0.25rem 0;
-  font-size: 0.625rem;
-  border-radius: 1rem;
-  filter: brightness(1.1);
   text-align: center;
 }
 
-.pokemon .detail img {
-  max-width: 100%;
-  height: 70px;
+.name {
+  font-size: 1.4rem;
 }
+.pokemonType {
+  display: flex;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.types {
+  padding: 0.25rem 0.5rem;
+  border-radius: 100vmax;
+}
+/* Aquí comienzan los colores de botones según tipo */
 .normal {
-  background-color: #797a7ad2;
-}
-
-.grass {
-  background-color: #55cab2;
+  background-color: var(--type-normal);
+  color: var(--clr-black);
 }
 
 .fire {
-  background-color: #f98183;
+  background-color: var(--type-fire);
+  color: var(--clr-black);
 }
 
 .water {
-  background-color: #8dc3d1;
+  background-color: var(--type-water);
+  color: var(--clr-white);
+}
+
+.grass {
+  background-color: var(--type-grass);
+  color: var(--clr-black);
 }
 
 .electric {
-  background-color: #fae56de0;
+  background-color: var(--type-electric);
+  color: var(--clr-black);
 }
 
 .ice {
-  background-color: #98d5d7;
-}
-
-.ground {
-  background-color: #dfbf69;
-}
-
-.flying {
-  background-color: #b8c5cc;
-}
-
-.poison {
-  background-color: #c484b4;
+  background-color: var(--type-ice);
+  color: var(--clr-black);
 }
 
 .fighting {
-  background-color: #bf3129bb;
+  background-color: var(--type-fighting);
+  color: var(--clr-white);
+}
+
+.poison {
+  background-color: var(--type-poison);
+  color: var(--clr-white);
+}
+
+.ground {
+  background-color: var(--type-ground);
+  color: var(--clr-black);
+}
+
+.flying {
+  background-color: var(--type-flying);
+  color: var(--clr-black);
 }
 
 .psychic {
-  background-color: #d3376698;
-}
-
-.dark {
-  background-color: #725847;
-}
-
-.rock {
-  background-color: #a18f3bd5;
+  background-color: var(--type-psychic);
+  color: var(--clr-black);
 }
 
 .bug {
-  background-color: #7cb159;
+  background-color: var(--type-bug);
+  color: var(--clr-black);
+}
+
+.rock {
+  background-color: var(--type-rock);
+  color: var(--clr-black);
 }
 
 .ghost {
-  background-color: #6e5896c4;
+  background-color: var(--type-ghost);
+  color: var(--clr-white);
 }
 
-.steel {
-  background-color: #b9b7cf;
+.dark {
+  background-color: var(--type-dark);
+  color: var(--clr-white);
 }
 
 .dragon {
-  background-color: #6e38f6bb;
+  background-color: var(--type-dragon);
+  color: var(--clr-white);
+}
+
+.steel {
+  background-color: var(--type-steel);
+  color: var(--clr-black);
 }
 
 .fairy {
-  background-color: #f9aec7ce;
+  background-color: var(--type-fairy);
+  color: var(--clr-black);
 }

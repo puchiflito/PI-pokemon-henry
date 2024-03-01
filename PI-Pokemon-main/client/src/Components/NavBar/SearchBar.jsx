@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemon, getPokemonName } from "../../Redux/Actions/actions";
+import style from "./search.module.css";
 const SearchBar = () => {
   const dispatch = useDispatch();
   const pokemons = useSelector((state) => state.pokemon);
@@ -34,7 +35,9 @@ const SearchBar = () => {
           value={poke}
           onChange={change}
         />
-        <button type="submit">Search</button>
+        <button className={style.btn} type="submit">
+          Search
+        </button>
       </form>
     </div>
   );

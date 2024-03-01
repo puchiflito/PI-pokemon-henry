@@ -1,0 +1,14 @@
+.page {
+  padding: 1rem;
+}
+.btn {
+  color: white;
+  padding: 0.5rem;
+  border-radius: 100vmax;
+  cursor: grab;
+  font-weight: 600;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}

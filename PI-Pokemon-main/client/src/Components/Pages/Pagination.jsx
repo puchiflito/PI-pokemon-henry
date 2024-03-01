@@ -1,3 +1,4 @@
+import style from "./pagination.module.css";
 const Pagination = ({ setPaginaActual, paginaActual, nPage }) => {
   const next = () => {
     paginaActual !== nPage
@@ -10,12 +11,16 @@ const Pagination = ({ setPaginaActual, paginaActual, nPage }) => {
       : alert("You are on the first page");
   };
   return (
-    <div>
-      <button onClick={prev}>Prev</button>
+    <div className={style.page}>
+      <button className={style.btn} onClick={prev}>
+        Prev
+      </button>
       <h3>
         {paginaActual} / {nPage}
       </h3>
-      <button onClick={next}>Next</button>
+      <button className={style.btn} onClick={next}>
+        Next
+      </button>
     </div>
   );
 };

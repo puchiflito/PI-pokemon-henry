@@ -7,7 +7,7 @@ import {
   orderName,
   resetPoke,
 } from "../../Redux/Actions/actions";
-
+import style from "./filter.module.css";
 const Fillter = () => {
   const dispatch = useDispatch();
   const filterForApi = () => {
@@ -26,23 +26,47 @@ const Fillter = () => {
     dispatch(orderAttack(target.value));
   };
   return (
-    <div>
-      <button onClick={filterForApi}>Filter for Api</button>
-      <button onClick={filterForDb}>Filter for DB</button>
-      <button onClick={resetPokemon}>Reset Pokemons</button>
-      <button value="A" onClick={orderNameA}>
-        Order Name A - Z
-      </button>
-      <button value="Z" onClick={orderNameA}>
-        Order Name Z - A
-      </button>
-      <button value="asc" onClick={orderAttackPoke}>
-        Order Attack ASC
-      </button>
-
-      <button value="des" onClick={orderAttackPoke}>
-        Order Attack DES
-      </button>
+    <div className={style.nav}>
+      <ul className={style.navList}>
+        <li className={style.navItem}>
+          <button className={style.btn} onClick={filterForApi}>
+            Filter for Api
+          </button>
+        </li>
+        <li className={style.navItem}>
+          <button className={style.btn} onClick={filterForDb}>
+            Filter for DB
+          </button>
+        </li>
+        <li className={style.navItem}>
+          <button className={style.btn} onClick={resetPokemon}>
+            Reset Pokemons
+          </button>
+        </li>
+        <li className={style.navItem}>
+          <button value="A" className={style.btn} onClick={orderNameA}>
+            Order Name A - Z
+          </button>
+        </li>
+        <li className={style.navItem}>
+          {" "}
+          <button value="Z" className={style.btn} onClick={orderNameA}>
+            Order Name Z - A
+          </button>
+        </li>
+        <li className={style.navItem}>
+          {" "}
+          <button value="asc" className={style.btn} onClick={orderAttackPoke}>
+            Order Attack ASC
+          </button>
+        </li>
+        <li className={style.navItem}>
+          {" "}
+          <button value="des" className={style.btn} onClick={orderAttackPoke}>
+            Order Attack DES
+          </button>
+        </li>
+      </ul>
     </div>
   );
 };

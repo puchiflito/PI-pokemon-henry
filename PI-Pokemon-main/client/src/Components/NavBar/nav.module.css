@@ -1,0 +1,25 @@
+header {
+  padding-block: 1rem;
+  background-color: var(--clr-gray);
+}
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.btn {
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+  padding: 0.5rem;
+  border-radius: 100vmax;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
