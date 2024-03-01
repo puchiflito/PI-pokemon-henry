@@ -4,6 +4,8 @@ import { getPokemon, getType } from "../../Redux/Actions/actions";
 import Pagination from "./Pagination";
 import Cards from "../Cards/Cards";
 import Fillter from "../Filter/Fillter";
+import style from "./page.module.css";
+import portada from "../../assets/logo.png";
 
 const Pages = () => {
   const dispacth = useDispatch();
@@ -26,8 +28,16 @@ const Pages = () => {
 
   const nPage = Math.ceil(pokemons.length / limiteDeDatos);
   return (
-    <div>
+    <div className={style.content}>
+      <div className={style.logoContent}>
+        <img className={style.logo} src={portada} alt="portada de la pokedex" />
+      </div>
       <Fillter />
+      <Pagination
+        setPaginaActual={setPaginaActual}
+        paginaActual={paginaActual}
+        nPage={nPage}
+      />
       <Cards nPokemons={nPokemons} />
       <Pagination
         setPaginaActual={setPaginaActual}

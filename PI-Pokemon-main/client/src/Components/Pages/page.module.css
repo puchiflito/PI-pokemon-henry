@@ -1,0 +1,46 @@
+* {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #e7e7e8;
+}
+
+.logo {
+  max-width: 200px;
+}
+
+.logoContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 20px;
+}
+
+.content {
+  width: 100vw;
+  height: 100vh;
+  padding: 1rem;
+  background-color: #fff;
+}
+
+.footer-content {
+  text-align: center;
+  max-width: 960px;
+  margin: 0 auto;
+  font-size: 10px;
+  font-weight: bold;
+  color: #575652;
+}
+
+@media screen and (min-width: 992px) {
+  .content {
+    max-width: 992px;
+    height: auto;
+    margin: 1rem auto;
+    border-radius: 1rem;
+  }
+}

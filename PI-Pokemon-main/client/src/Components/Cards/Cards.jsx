@@ -1,7 +1,8 @@
 import Card from "./Card";
+import style from "./cards.module.css";
 const Cards = ({ nPokemons }) => {
   return (
-    <div>
+    <div className={style.pokemons}>
       {nPokemons.map((pokemon, index) => (
         <Card
           key={index}
