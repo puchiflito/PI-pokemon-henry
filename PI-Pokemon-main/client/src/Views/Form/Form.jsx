@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getType } from "../../Redux/Actions/actions";
+import style from "./form.module.css";
 const Form = () => {
   const urlPokemon = "http://localhost:3001/pokemon";
   //Trago datos de redus para los type
   const dispacth = useDispatch();
   const types = useSelector((state) => state.type);
+  console.log(types);
   useEffect(() => {
     dispacth(getType());
   }, [dispacth]);
@@ -19,7 +21,7 @@ const Form = () => {
     speed: "",
     height: "",
     weight: "",
-    type: [],
+    types: [],
   });
   //Estado errores
   const [error, setError] = useState({});
@@ -36,7 +38,7 @@ const Form = () => {
     setType([...type, target.value]);
     setPokemon((prevPokemon) => ({
       ...prevPokemon,
-      type: [...prevPokemon.type, target.value],
+      types: [...prevPokemon.types, target.value],
     }));
     setError({ ...error, type: "" });
   };
@@ -45,7 +47,7 @@ const Form = () => {
     setType(type.filter((t) => t !== types));
     setPokemon({
       ...pokemon,
-      type: pokemon.type.filter((t) => t !== types),
+      types: pokemon.types.filter((t) => t !== types),
     });
   };
   // ordenar
@@ -74,7 +76,7 @@ const Form = () => {
           speed: "",
           height: "",
           weight: "",
-          type: [],
+          types: [],
         });
       } else {
         throw new Error("Error al cargar el pokemon");
@@ -86,7 +88,7 @@ const Form = () => {
   return (
     <div>
       Form
-      <form onSubmit={submit}>
+      <form onSubmit={submit} className={style.form}>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" onChange={changeInput} />
         <label htmlFor="image">Image</label>
@@ -106,9 +108,10 @@ const Form = () => {
         <label htmlFor="type">Type</label>
         <select
           name="type"
-          value={pokemon.type}
+          value={pokemon.types}
           onChange={changeTypes}
           multiple
+          className={style.types}
         >
           <option disabled>Select Types</option>
           {types.sort(compareTypes).map((type, index) => (
@@ -118,25 +121,27 @@ const Form = () => {
           ))}
         </select>
 
-        <div>
+        <div className={style.types}>
           {type.map((typeId) => {
             const ty = types.find((t) => t.id === typeId);
             return (
               <div key={typeId}>
                 <div>
-                  <button onClick={() => removeTypes(typeId)}>Delete</button>
+                  <button
+                    className={style.btn}
+                    onClick={() => removeTypes(typeId)}
+                  >
+                    Delete
+                  </button>
                 </div>
-                <img
-                  src={types?.image || "foto del pokemon"}
-                  alt="imagen del pokemon"
-                />
-                <h3>{types?.name || "nombre del pokemon"}</h3>
+
+                <h3>{types.name}</h3>
               </div>
             );
           })}
         </div>
 
-        <button>Save</button>
+        <button className={style.btn}>Save</button>
       </form>
     </div>
   );

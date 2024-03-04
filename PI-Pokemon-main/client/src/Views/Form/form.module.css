@@ -1,0 +1,31 @@
+.form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  border: 2px solid black;
+}
+label {
+  background: black;
+  color: white;
+  border-radius: 100%;
+}
+
+.types {
+  background: white;
+  color: black;
+}
+
+.btn {
+  background-color: var(--clr-black);
+  color: var(--clr-white);
+  padding: 0.5rem;
+  border-radius: 100vmax;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: 0.2s;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
