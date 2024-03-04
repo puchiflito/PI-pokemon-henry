@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Pages from "../../Components/Pages/Pages";
 
 const Home = () => {

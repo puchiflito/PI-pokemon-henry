@@ -6,8 +6,10 @@ import Cards from "../Cards/Cards";
 import Fillter from "../Filter/Fillter";
 import style from "./page.module.css";
 import portada from "../../assets/logo.png";
+import Loader from "../Loader/Loader";
 
 const Pages = () => {
+  const [load, setLoad] = useState(true);
   const dispacth = useDispatch();
   const pokemons = useSelector((state) => state.filters);
   const types = useSelector((state) => state.type);
@@ -15,8 +17,12 @@ const Pages = () => {
   console.log("pokemons del arreglo filters: ", pokemons);
 
   useEffect(() => {
-    dispacth(getPokemon());
-    dispacth(getType());
+    const poke = async () => {
+      setLoad(true);
+      await dispacth(getPokemon());
+      setLoad(false);
+    };
+    poke();
   }, [dispacth]);
   const [limiteDeDatos, setLimiteDeDatos] = useState(12);
   const [paginaActual, setPaginaActual] = useState(1);
@@ -28,22 +34,32 @@ const Pages = () => {
 
   const nPage = Math.ceil(pokemons.length / limiteDeDatos);
   return (
-    <div className={style.content}>
-      <div className={style.logoContent}>
-        <img className={style.logo} src={portada} alt="portada de la pokedex" />
-      </div>
-      <Fillter />
-      <Pagination
-        setPaginaActual={setPaginaActual}
-        paginaActual={paginaActual}
-        nPage={nPage}
-      />
-      <Cards nPokemons={nPokemons} />
-      <Pagination
-        setPaginaActual={setPaginaActual}
-        paginaActual={paginaActual}
-        nPage={nPage}
-      />
+    <div>
+      {load ? (
+        <Loader />
+      ) : (
+        <div className={style.content}>
+          <div className={style.logoContent}>
+            <img
+              className={style.logo}
+              src={portada}
+              alt="portada de la pokedex"
+            />
+          </div>
+          <Fillter />
+          <Pagination
+            setPaginaActual={setPaginaActual}
+            paginaActual={paginaActual}
+            nPage={nPage}
+          />
+          <Cards nPokemons={nPokemons} />
+          <Pagination
+            setPaginaActual={setPaginaActual}
+            paginaActual={paginaActual}
+            nPage={nPage}
+          />
+        </div>
+      )}
     </div>
   );
 };

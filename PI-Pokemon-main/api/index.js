@@ -18,13 +18,13 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require("./src/app.js");
-const { loadTypesDb } = require("./src/controllers/getTypes.js");
+// const { loadTypesDb } = require("./src/controllers/getTypes.js");
 const { conn } = require("./src/db.js");
 
 // Syncing all the models at once.
 conn.sync().then(() => {
   server.listen(3001, async () => {
-    await loadTypesDb();
+    // await loadTypesDb();
     console.log("%s listening at 3001"); // eslint-disable-line no-console
   });
 });
