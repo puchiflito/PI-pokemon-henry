@@ -20,6 +20,7 @@ const Pages = () => {
     const poke = async () => {
       setLoad(true);
       await dispacth(getPokemon());
+      await dispacth(getType());
       setLoad(false);
     };
     poke();
