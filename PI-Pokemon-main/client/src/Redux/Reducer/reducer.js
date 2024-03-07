@@ -8,7 +8,6 @@ import {
   ORDER_ATTACK,
   ORDER_NAME,
   RESET_POKE,
-  orderName,
 } from "../Actions/actions";
 const initiaState = {
   pokemon: [],
@@ -34,10 +33,10 @@ const reducer = (state = initiaState, action) => {
         ...state,
         pokemonDetail: action.payload,
       };
-      // case GET_POKEMON_NAME:
+    case GET_POKEMON_NAME:
       return {
         ...state,
-        filters: action.payload,
+        filters: [...state.filters, action.payload],
       };
     case GET_TYPE:
       return {

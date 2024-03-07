@@ -7,10 +7,10 @@ const Form = () => {
   //Trago datos de redus para los type
   const dispacth = useDispatch();
   const types = useSelector((state) => state.type);
-  console.log(types);
+
   useEffect(() => {
     dispacth(getType());
-  }, [dispacth]);
+  }, []);
   // Estado Pokemon
   const [pokemon, setPokemon] = useState({
     name: "",
@@ -21,7 +21,7 @@ const Form = () => {
     speed: "",
     height: "",
     weight: "",
-    types: [],
+    type: [],
   });
   //Estado errores
   const [error, setError] = useState({});
@@ -38,7 +38,7 @@ const Form = () => {
     setType([...type, target.value]);
     setPokemon((prevPokemon) => ({
       ...prevPokemon,
-      types: [...prevPokemon.types, target.value],
+      type: [...prevPokemon.type, target.value],
     }));
     setError({ ...error, type: "" });
   };
@@ -47,7 +47,7 @@ const Form = () => {
     setType(type.filter((t) => t !== types));
     setPokemon({
       ...pokemon,
-      types: pokemon.types.filter((t) => t !== types),
+      type: pokemon.type.filter((t) => t !== types),
     });
   };
   // ordenar
@@ -66,7 +66,9 @@ const Form = () => {
         body: JSON.stringify(pokemon),
       });
       if (response.ok) {
+        console.log("res: ", response);
         alert("Se creo el pokemon");
+        console.log(pokemon);
         setPokemon({
           name: "",
           img: "",
@@ -76,7 +78,7 @@ const Form = () => {
           speed: "",
           height: "",
           weight: "",
-          types: [],
+          type: [],
         });
       } else {
         throw new Error("Error al cargar el pokemon");
@@ -108,7 +110,7 @@ const Form = () => {
         <label htmlFor="type">Type</label>
         <select
           name="type"
-          value={pokemon.types}
+          value={pokemon.type}
           onChange={changeTypes}
           multiple
           className={style.types}
@@ -135,7 +137,7 @@ const Form = () => {
                   </button>
                 </div>
 
-                <h3>{types.name}</h3>
+                <h3>{type.name}</h3>
               </div>
             );
           })}
