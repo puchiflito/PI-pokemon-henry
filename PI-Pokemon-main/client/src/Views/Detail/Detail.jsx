@@ -10,7 +10,7 @@ const Detail = () => {
   const dispatch = useDispatch();
   const pokemons = useSelector((state) => state.pokemonDetail);
   const types = useSelector((state) => state.type);
-  const getTypesPokemon = (type) => {
+  const getTypePoke = (type) => {
     return style[type.toLowerCase()];
   };
   useEffect(() => {
@@ -41,17 +41,29 @@ const Detail = () => {
       <div className={style.pokemonType}>
         <h3>
           TYPE:
-          {
-            <ul className={style.types}>
-              {!pokemons.type
-                ? "algo salio mal"
-                : pokemons.type.map((types, index) => (
-                    <li className={getTypesPokemon(types)} key={index}>
-                      {types}
-                    </li>
-                  ))}
-            </ul>
-          }
+          {pokemons.type && (
+            <div className="pokemonType">
+              <ul className={style.types}>
+                {pokemons.type.map((type, index) => (
+                  <li className={getTypePoke(type)} key={index}>
+                    {type}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {/* Mostrar tipos si está presente "Types" */}
+          {pokemons.Types && (
+            <div className="pokemonType">
+              <ul className={style.types}>
+                {pokemons.Types.map((type, index) => (
+                  <li className={getTypePoke(type.name)} key={index}>
+                    {type.name}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </h3>
       </div>
     </div>

@@ -9,7 +9,7 @@ const Form = () => {
   const dispacth = useDispatch();
   const types = useSelector((state) => state.type);
   const allPokemon = useSelector((state) => state.pokemon);
-  console.log("imagen de los pokemones: ", allPokemon);
+  console.log("types: ", types);
 
   useEffect(() => {
     dispacth(getType());
