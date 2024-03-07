@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPokemon, getType } from "../../Redux/Actions/actions";
+import validation from "./validation";
 import style from "./form.module.css";
 const Form = () => {
   const urlPokemon = "http://localhost:3001/pokemon";
@@ -44,7 +45,7 @@ const Form = () => {
   // Change inputs
   const changeInput = ({ target }) => {
     const { name, value } = target;
-    // setError(validation({ ...pokemon, [name]: value }));
+    setError(validation({ ...pokemon, [name]: value }));
     setPokemon({ ...pokemon, [name]: value });
   };
   //CHANGE DE TYPES
@@ -107,6 +108,7 @@ const Form = () => {
       <form onSubmit={submit} className={style.form}>
         <label htmlFor="name">Name</label>
         <input type="text" name="name" onChange={changeInput} />
+        {error.name && <p className={style.error_message}>{error.name}</p>}
         <label htmlFor="image">Image</label>
 
         <select name="image" value={pokemon.img} onChange={changeImage}>
@@ -117,19 +119,28 @@ const Form = () => {
             </option>
           ))}
         </select>
+        <p className={style.error_message}>La imagen es opcional</p>
 
         <label htmlFor="hp">Health</label>
         <input type="number" name="hp" onChange={changeInput} />
+        {error.hp && <p className={style.error_message}>{error.hp}</p>}
         <label htmlFor="attack">Attack</label>
         <input type="number" name="attack" onChange={changeInput} />
+        {error.attack && <p className={style.error_message}>{error.attack}</p>}
         <label htmlFor="defense">Defense</label>
         <input type="number" name="defense" onChange={changeInput} />
+        {error.defense && (
+          <p className={style.error_message}>{error.defense}</p>
+        )}
         <label htmlFor="speed">Speed</label>
         <input type="number" name="speed" onChange={changeInput} />
+        {error.speed && <p className={style.error_message}>{error.speed}</p>}
         <label htmlFor="height">Height</label>
         <input type="number" name="height" onChange={changeInput} />
+        {error.height && <p className={style.error_message}>{error.height}</p>}
         <label htmlFor="weight">Weight</label>
         <input type="number" name="weight" onChange={changeInput} />
+        {error.weight && <p className={style.error_message}>{error.weight}</p>}
         <label htmlFor="type">Type</label>
         <select
           name="type"
@@ -147,7 +158,11 @@ const Form = () => {
         </select>
         {/*imgane seleccionada */}
         <div>
-          <img src={selectImg} alt="imagen seleccionada" />
+          <img
+            className={style.img}
+            src={selectImg}
+            alt="imagen seleccionada"
+          />
         </div>
         {/*LISTA DE TYPES SELECCIONADOS */}
         <div className={style.types}>

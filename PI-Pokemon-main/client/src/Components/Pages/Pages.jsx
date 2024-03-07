@@ -53,7 +53,7 @@ const Pages = () => {
             paginaActual={paginaActual}
             nPage={nPage}
           />
-          <Cards nPokemons={nPokemons} />
+          <Cards nPokemons={nPokemons} types={types} />
           <Pagination
             setPaginaActual={setPaginaActual}
             paginaActual={paginaActual}

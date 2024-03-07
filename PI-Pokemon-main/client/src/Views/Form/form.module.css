@@ -29,3 +29,23 @@ label {
 .btn:hover {
   transform: scale(1.1);
 }
+
+.error_message {
+  color: rgb(220, 7, 7);
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-style: italic;
+  font-weight: 500;
+  text-align: left;
+  max-height: 20px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.img {
+  height: 150px;
+  background: white;
+  border-radius: 100%;
+  border: 0.5rem solid black;
+}
