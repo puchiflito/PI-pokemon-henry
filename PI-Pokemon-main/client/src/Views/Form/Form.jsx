@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getType } from "../../Redux/Actions/actions";
+import { getPokemon, getType } from "../../Redux/Actions/actions";
 import style from "./form.module.css";
 const Form = () => {
   const urlPokemon = "http://localhost:3001/pokemon";
   //Trago datos de redus para los type
   const dispacth = useDispatch();
   const types = useSelector((state) => state.type);
+  const allPokemon = useSelector((state) => state.pokemon);
+  console.log("imagen de los pokemones: ", allPokemon);
 
   useEffect(() => {
     dispacth(getType());
-  }, []);
+    dispacth(getPokemon());
+  }, [dispacth]);
   // Estado Pokemon
   const [pokemon, setPokemon] = useState({
     name: "",
@@ -23,6 +26,17 @@ const Form = () => {
     weight: "",
     type: [],
   });
+  // ESTADO DE LA IMAGEN A SELECCIONAR
+  const [selectImg, setSelectImg] = useState("");
+  // seleccionar imagen del pokemon
+  const changeImage = ({ target }) => {
+    setSelectImg(target.value);
+    setPokemon({
+      ...pokemon,
+      img: target.value,
+    });
+  };
+  console.log("imagen del pokemon: ", pokemon.img);
   //Estado errores
   const [error, setError] = useState({});
   //Estado de types
@@ -94,7 +108,16 @@ const Form = () => {
         <label htmlFor="name">Name</label>
         <input type="text" name="name" onChange={changeInput} />
         <label htmlFor="image">Image</label>
-        <input type="text" name="image" onChange={changeInput} />
+
+        <select name="image" value={pokemon.img} onChange={changeImage}>
+          <option>Select img</option>
+          {allPokemon.map((p, index) => (
+            <option key={index} value={p.img}>
+              {p.img}
+            </option>
+          ))}
+        </select>
+
         <label htmlFor="hp">Health</label>
         <input type="number" name="hp" onChange={changeInput} />
         <label htmlFor="attack">Attack</label>
@@ -122,6 +145,10 @@ const Form = () => {
             </option>
           ))}
         </select>
+        {/*imgane seleccionada */}
+        <div>
+          <img src={selectImg} alt="imagen seleccionada" />
+        </div>
         {/*LISTA DE TYPES SELECCIONADOS */}
         <div className={style.types}>
           {selectType.map((typeId) => {
