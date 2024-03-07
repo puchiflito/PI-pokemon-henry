@@ -26,7 +26,7 @@ const Form = () => {
   //Estado errores
   const [error, setError] = useState({});
   //Estado de types
-  const [type, setType] = useState([]);
+  const [selectType, setSelectType] = useState([]);
   // Change inputs
   const changeInput = ({ target }) => {
     const { name, value } = target;
@@ -35,16 +35,16 @@ const Form = () => {
   };
   //CHANGE DE TYPES
   const changeTypes = ({ target }) => {
-    setType([...type, target.value]);
-    setPokemon((prevPokemon) => ({
-      ...prevPokemon,
-      type: [...prevPokemon.type, target.value],
-    }));
+    setSelectType([...selectType, target.value]);
+    setPokemon({
+      ...pokemon,
+      type: [...pokemon.type, target.value],
+    });
     setError({ ...error, type: "" });
   };
   // REMOVER TYPES
   const removeTypes = (types) => {
-    setType(type.filter((t) => t !== types));
+    setSelectType(selectType.filter((t) => t !== types));
     setPokemon({
       ...pokemon,
       type: pokemon.type.filter((t) => t !== types),
@@ -122,10 +122,12 @@ const Form = () => {
             </option>
           ))}
         </select>
-
+        {/*LISTA DE TYPES SELECCIONADOS */}
         <div className={style.types}>
-          {type.map((typeId) => {
-            const ty = types.find((t) => t.id === typeId);
+          {selectType.map((typeId) => {
+            console.log("selectTypes: ", selectType);
+            const ty = types.find((t) => t.name === typeId);
+            console.log("types seleccionados: ", ty);
             return (
               <div key={typeId}>
                 <div>
@@ -137,7 +139,7 @@ const Form = () => {
                   </button>
                 </div>
 
-                <h3>{type.name}</h3>
+                <h3>{ty.name}</h3>
               </div>
             );
           })}
@@ -150,3 +152,8 @@ const Form = () => {
 };
 
 export default Form;
+
+// (prevPokemon) => ({
+//   ...prevPokemon,
+//   type: [...prevPokemon.type, target.value],
+// })
