@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import style from "./card.module.css";
 const Card = (props) => {
-  console.log("PROPS: ", props);
   const getTypePoke = (type) => {
     // if (type.toLowerCase() === "fire") {
     //   return style.fire;

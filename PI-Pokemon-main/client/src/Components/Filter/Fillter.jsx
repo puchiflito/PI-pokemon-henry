@@ -1,8 +1,10 @@
-import React from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   filterApi,
   filterDb,
+  filterType,
+  getType,
   orderAttack,
   orderName,
   resetPoke,
@@ -10,6 +12,8 @@ import {
 import style from "./filter.module.css";
 const Fillter = () => {
   const dispatch = useDispatch();
+  const Types = useSelector((state) => state.type);
+
   const filterForApi = () => {
     dispatch(filterApi());
   };
@@ -25,6 +29,14 @@ const Fillter = () => {
   const orderAttackPoke = ({ target }) => {
     dispatch(orderAttack(target.value));
   };
+
+  const filterTypes = (e) => {
+    console.log("type: ", e.target.value);
+    dispatch(filterType(e.target.value));
+  };
+  useEffect(() => {
+    dispatch(getType());
+  }, [dispatch]);
   return (
     <div className={style.nav}>
       <ul className={style.navList}>
@@ -61,12 +73,22 @@ const Fillter = () => {
           </button>
         </li>
         <li className={style.navItem}>
-          {" "}
           <button value="des" className={style.btn} onClick={orderAttackPoke}>
             Order Attack DES
           </button>
         </li>
+        {/* <li className={style.navItem}>
+          <button onClick={() => filterTypes("fire")}>Fire</button>
+        </li> */}
       </ul>
+      <select onChange={(t) => filterTypes(t)}>
+        <option value="all">ALL types</option>
+        {Types.map((t, index) => (
+          <option key={index} value={t.name}>
+            {t.name}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

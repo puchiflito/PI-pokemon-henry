@@ -7,6 +7,7 @@ const FILTER_DB = "FILTER_DB";
 const RESET_POKE = "RESET_POKE";
 const ORDER_ATTACK = "ORDER_ATTACK";
 const ORDER_NAME = "ORDER_NAME";
+const FILTER_TYPE = "FILTER_TYPE";
 const urlPokemon = "http://localhost:3001/pokemon";
 const urlTypes = "http://localhost:3001/type";
 
@@ -95,10 +96,16 @@ const orderAttack = (types) => {
   };
 };
 
-const orderName = (types) => {
+const orderName = (name) => {
   return {
     type: ORDER_NAME,
-    payload: types,
+    payload: name,
+  };
+};
+
+const filterType = () => {
+  return {
+    type: FILTER_TYPE,
   };
 };
 export {
@@ -120,4 +127,6 @@ export {
   orderAttack,
   ORDER_NAME,
   orderName,
+  filterType,
+  FILTER_TYPE,
 };

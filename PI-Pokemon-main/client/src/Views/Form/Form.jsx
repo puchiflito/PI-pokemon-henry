@@ -111,7 +111,12 @@ const Form = () => {
         {error.name && <p className={style.error_message}>{error.name}</p>}
         <label htmlFor="image">Image</label>
 
-        <select name="image" value={pokemon.img} onChange={changeImage}>
+        <select
+          className={style.types}
+          name="image"
+          value={pokemon.img}
+          onChange={changeImage}
+        >
           <option>Select img</option>
           {allPokemon.map((p, index) => (
             <option key={index} value={p.img}>

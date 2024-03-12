@@ -13,8 +13,6 @@ const Pages = () => {
   const dispacth = useDispatch();
   const pokemons = useSelector((state) => state.filters);
   const types = useSelector((state) => state.type);
-  console.log(types);
-  console.log("pokemons del arreglo filters: ", pokemons);
 
   useEffect(() => {
     const poke = async () => {

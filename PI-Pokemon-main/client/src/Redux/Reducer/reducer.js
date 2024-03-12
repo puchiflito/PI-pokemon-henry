@@ -1,6 +1,7 @@
 import {
   FILTER_API,
   FILTER_DB,
+  FILTER_TYPE,
   GET_POKEMON,
   GET_POKEMON_ID,
   GET_POKEMON_NAME,
@@ -36,7 +37,7 @@ const reducer = (state = initiaState, action) => {
     case GET_POKEMON_NAME:
       return {
         ...state,
-        filters: [...state.filters, action.payload],
+        filters: [action.payload],
       };
     case GET_TYPE:
       return {
@@ -89,10 +90,24 @@ const reducer = (state = initiaState, action) => {
         ...state,
         filters: orderAttack,
       };
+    case FILTER_TYPE:
+      return {
+        ...state,
+        filters: state.pokemon.find((poke) => poke.Types === action.payload),
+      };
+    // const pokemons = state.pokemon;
+    // const filter =
+    //   action.payload === "all"
+    //     ? pokemons
+    //     : pokemons.filter((pt) => pt.types === action.payload);
+
+    // return {
+    //   ...state,
+    //   pokemon: filter,
+    // };
     default:
       return state;
   }
 };
-console.log("FILTERS: ", initiaState.filters);
 
 export default reducer;
